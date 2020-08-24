@@ -1,20 +1,19 @@
 language: node_js
 node_js:
-  - 0.10
-  - 4
-  - 6
-  - 7
-  - 8
-  - 9
-  - 11
+  # - 0.10
+  # - 4
+  # - 6
+  # - 7
+  # - 8
+  # - 9
+  # - 11
   - 12
-  - 13
-  - 13
-  - 14
+  # - 13
+  # - 14
 script:
   - npm run lint
   - npm run test
-  - npm run test-coverage && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage
+  # - npm run test-coverage && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage
 after_script:
   - "heroku container:login || travis_terminate 1"
   - "heroku container:push -a $HEROKU_APP_NAME web || travis_terminate 1"
