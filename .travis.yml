@@ -15,3 +15,7 @@ script:
   - npm run lint
   - npm run test
   - npm run test-coverage && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage
+after_script:
+  - "heroku container:login || travis_terminate 1"
+  - "heroku container:push -a $HEROKU_APP_NAME web || travis_terminate 1"
+  - "heroku container:release -a $HEROKU_APP_NAME web || travis_terminate 1"
